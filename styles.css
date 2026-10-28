@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+body {
+    background-image: url("./assets/background.png");
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 2;
+}
+
+#bookshelf {
+    background-color: rgb(84, 18, 18);
+    border: burlywood 20px solid;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    height: 250px;
+    align-self: flex-end;
+    justify-self: center;
+    width: 80%;
+}
+
+.book {
+    grid-row: span 1;
+    width: min-content;
+    height: 100%;
+    border: black solid 3px;
+    transform: scale(1);
+    transition: transform;
+    writing-mode: sideways-lr;
+    padding: 0.2rem;
+    position: relative;
+}
+
+.book:hover {
+    transform: scale(1.1);
+    writing-mode: horizontal-tb;
+    width: 150px;
+    z-index: 10;
+    cursor: grab;
+    display: grid;
+    grid-template-rows: 3;
+    grid-template-columns: 2;
+}
+
+#newBookBtn {
+    width: 5rem;
+    height: 2rem;
+}
+
+#newBookForm {
+    background-color: white;
+}
+
+.hidden {
+    opacity: 0
+}
+
+.book .removeBtn,
+.book .bookAuthor,
+.book .bookPages,
+.book .bookRead {
+    display: none;
+}
+
+.book:hover .removeBtn {
+    background-color: red;
+    border: black solid 2px;
+    border-radius: 50%;
+    width: 15%;
+    aspect-ratio: 1;
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+}
+
+.book:hover .bookAuthor,
+.book:hover .bookPages,
+.book:hover .bookRead {
+    display: block;
+    font-size: 0.75rem;
+}
+
+.book:hover .bookTitle {
+    font-size: 1.5rem;
+}
+
+.book:hover .bookAuthor,
+.book:hover .bookTitle {
+    grid-column: span 2;
+}
+
+.book:hover .bookPages,
+.book:hover .bookRead {
+    grid-column: span 1;
+    font-size: 0.5rem;
+    justify-content: space-around;
+    align-self: flex-end;
+}
+
+.removeBtn:hover {
+    cursor: pointer;
+}

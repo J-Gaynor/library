@@ -13,6 +13,8 @@ body {
     height: 100vh;
     display: grid;
     grid-template-rows: 2;
+    grid-template-columns: 2;
+    gap: 2rem;
 }
 
 #bookshelf {
@@ -26,6 +28,7 @@ body {
     align-self: flex-end;
     justify-self: center;
     width: 80%;
+    grid-column: span 2;
 }
 
 .book {
@@ -34,14 +37,16 @@ body {
     height: 100%;
     border: black solid 3px;
     transform: scale(1);
-    transition: transform;
+    transform-origin: bottom center;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
     writing-mode: sideways-lr;
     padding: 0.2rem;
     position: relative;
 }
 
 .book:hover {
-    transform: scale(1.1);
+    transform: translateY(-12px) scale(1.08);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
     writing-mode: horizontal-tb;
     width: 150px;
     z-index: 10;
@@ -54,10 +59,37 @@ body {
 #newBookBtn {
     width: 5rem;
     height: 2rem;
+    grid-column: span 1;
+    align-self: center;
+    justify-self: end;
 }
 
 #newBookForm {
     background-color: white;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 3;
+    width: 30%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    gap: 0.4rem;
+    border: black solid 3px;
+}
+
+.readContainer {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    gap: 0.1rem;
+}
+
+.readText {
+    font-size: 0.75rem;
+}
+
+#newBookBtn,
+#newBookForm {
+    grid-column: span 1;
 }
 
 .hidden {
@@ -85,28 +117,81 @@ body {
 
 .book:hover .bookAuthor,
 .book:hover .bookPages,
-.book:hover .bookRead {
+.book:hover .bookRead,
+#newBookForm .bookAuthor,
+#newBookForm .bookPages,
+#newBookForm .bookRead {
     display: block;
     font-size: 0.75rem;
 }
 
-.book:hover .bookTitle {
+#newBookForm .bookAuthor {
+    height: 2rem;
+}
+
+#newBookForm .bookPages {
+    height: 1rem;
+}
+
+.book:hover .bookTitle,
+#newBookForm .bookTitle {
     font-size: 1.5rem;
 }
 
 .book:hover .bookAuthor,
-.book:hover .bookTitle {
+.book:hover .bookTitle,
+#newBookForm .bookAuthor,
+#newBookForm .bookTitle {
     grid-column: span 2;
 }
 
 .book:hover .bookPages,
-.book:hover .bookRead {
+.book:hover .bookRead,
+#newBookForm .bookPages,
+#newBookForm .bookRead {
     grid-column: span 1;
     font-size: 0.5rem;
-    justify-content: space-around;
+    justify-content: space-between;
     align-self: flex-end;
+}
+
+.book:hover .bookRead,
+#newBookForm .bookRead {
+    justify-self: end;
+}
+
+#newBookForm .bookAuthor,
+#newBookForm .bookTitle {
+    width: 100%;
+}
+
+.removeBtn {
+    transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
 .removeBtn:hover {
     cursor: pointer;
+    transform: scale(1.2);
+    background-color: darkred;
+}
+
+#newBookBtn,
+#addBtn {
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#newBookBtn:hover,
+#addBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+#newBookBtn:active,
+#addBtn:active {
+    transform: translateY(0);
+}
+
+#addBtn {
+    grid-column: span 2;
 }

@@ -78,6 +78,11 @@ newBookBtn.addEventListener("click", toggleNewBookForm);
 addBtn.addEventListener("click", onSubmit);
 
 function toggleNewBookForm() {
+    if (!newBookForm.classList.contains("hidden")) {
+        newBookBtn.textContent = "Add Book";
+    } else {
+        newBookBtn.textContent = "Hide";
+    }
     newBookForm.classList.toggle("hidden");
 }
 
